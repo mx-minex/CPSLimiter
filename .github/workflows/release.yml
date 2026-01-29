@@ -43,9 +43,12 @@ jobs:
         run: ./gradlew build -Pversion=${{ steps.version.outputs.VERSION }} --no-daemon
 
       - name: SHA256 체크섬 생성
+        id: checksum
         run: |
           cd build/libs
-          sha256sum CPSLimiter-${{ steps.version.outputs.VERSION }}.jar > CPSLimiter-${{ steps.version.outputs.VERSION }}.jar.sha256
+          CHECKSUM=$(sha256sum CPSLimiter-${{ steps.version.outputs.VERSION }}.jar)
+          echo "$CHECKSUM" > CPSLimiter-${{ steps.version.outputs.VERSION }}.jar.sha256
+          echo "SHA256=$CHECKSUM" >> $GITHUB_OUTPUT
 
       - name: GitHub Release 생성
         uses: softprops/action-gh-release@v2
@@ -61,7 +64,7 @@ jobs:
 
             ### 체크섬 (SHA256)
             ```
-            $(cat build/libs/*.sha256)
+            ${{ steps.checksum.outputs.SHA256 }}
             ```
           files: |
             build/libs/CPSLimiter-${{ steps.version.outputs.VERSION }}.jar
