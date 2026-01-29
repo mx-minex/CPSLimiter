@@ -1,0 +1,92 @@
+# ========================================
+#   CPSLimiter Plugin
+#   Created by Junseo5
+#   Bug reports: Discord - Junseo5#3213
+# ========================================
+#
+# CPSLimiter 메시지 설정
+# 모든 메시지는 한국어로 작성됩니다.
+#
+# 색상 코드:
+# &0: 검정   &1: 진파랑   &2: 진초록   &3: 청록
+# &4: 진빨강 &5: 보라     &6: 금색     &7: 회색
+# &8: 진회색 &9: 파랑     &a: 초록     &b: 하늘
+# &c: 빨강   &d: 분홍     &e: 노랑     &f: 흰색
+#
+# 스타일 코드:
+# &l: 굵게  &o: 기울임  &n: 밑줄  &m: 취소선  &k: 무작위  &r: 초기화
+#
+# 플레이스홀더:
+# {cps} - 현재 CPS
+# {threshold} - CPS 임계값
+# {player} - 플레이어 이름
+# {cooldown} - 디버프 쿨다운 (ms)
+# {debuff-count} - 활성화된 디버프 수
+# {mode} - 전투 타겟 모드
+# ============================================
+
+messages:
+  # 접두사 (모든 메시지 앞에 붙음)
+  prefix: "&6[CPS제한] &r"
+
+  # ============================================
+  # 경고 메시지
+  # ============================================
+  warning:
+    # CPS 초과 시 채팅 메시지
+    chat: "&c경고! 당신의 CPS가 &e{cps}&c로 제한(&e{threshold}&c)을 초과했습니다. 디버프가 부여됩니다."
+
+    # CPS 초과 시 타이틀 (화면 중앙 큰 글씨)
+    title:
+      main: "&c&l경고!"
+      subtitle: "&eCPS {cps} 감지됨"
+
+  # ============================================
+  # 명령어 메시지
+  # ============================================
+  command:
+    # 도움말
+    help:
+      header: "&6===== CPSLimiter 도움말 ====="
+      reload: "&e/cpslimiter reload &7- 설정을 다시 불러옵니다"
+      status: "&e/cpslimiter status &7- 현재 설정을 확인합니다"
+      check: "&e/cpslimiter check [플레이어] &7- CPS를 확인합니다"
+
+    # 리로드 명령어
+    reload:
+      success: "&a설정이 성공적으로 리로드되었습니다."
+      fail: "&c설정 리로드 중 오류가 발생했습니다. 콘솔을 확인해주세요."
+
+    # 상태 명령어
+    status:
+      header: "&6===== CPSLimiter 상태 ====="
+      threshold: "&7- CPS 임계값: &e{threshold}"
+      cooldown: "&7- 디버프 쿨다운: &e{cooldown}ms"
+      target-mode: "&7- 전투 타겟 모드: &e{mode}"
+      debuff-count: "&7- 활성화된 디버프: &e{debuff-count}개"
+      chat-notification: "&7- 채팅 알림: &e{enabled}"
+      title-notification: "&7- 타이틀 알림: &e{enabled}"
+      logging: "&7- 로그 기록: &e{enabled}"
+
+    # CPS 확인 명령어
+    check:
+      result: "&e{player}&7님의 현재 CPS: &a{cps}"
+      player-not-found: "&c플레이어를 찾을 수 없습니다: &e{player}"
+
+    # 권한 없음
+    no-permission: "&c이 명령어를 사용할 권한이 없습니다."
+
+    # 알 수 없는 명령어
+    unknown: "&c알 수 없는 명령어입니다. &e/cpslimiter help &c를 입력하세요."
+
+  # ============================================
+  # 콘솔 메시지
+  # ============================================
+  console:
+    # 플레이어 전용 명령어
+    player-only: "&c이 명령어는 플레이어만 사용할 수 있습니다."
+
+# ============================================
+# 버전 정보 (수정하지 마세요)
+# ============================================
+config-version: 1

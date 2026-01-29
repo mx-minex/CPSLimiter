@@ -1,0 +1,45 @@
+name: CPSLimiter
+version: '${version}'
+main: kr.minex.cpslimiter.CPSLimiter
+api-version: '1.20'
+authors:
+  - Minex
+website: https://github.com/mx-minex
+description: CPS(초당 클릭 수)를 제한하고 임계값 초과 시 디버프를 부여하는 플러그인
+
+# 명령어 정의
+commands:
+  cpslimiter:
+    description: CPSLimiter 관리 명령어
+    usage: /<command> [reload|status|check|help]
+    permission: cpslimiter.command
+    aliases:
+      - cps
+      - cpsl
+
+# 권한 정의
+permissions:
+  cpslimiter.*:
+    description: 모든 CPSLimiter 권한
+    default: op
+    children:
+      cpslimiter.command: true
+      cpslimiter.admin: true
+      cpslimiter.check: true
+      cpslimiter.bypass: true
+
+  cpslimiter.command:
+    description: 기본 명령어 사용 권한
+    default: true
+
+  cpslimiter.admin:
+    description: 관리자 명령어 (reload, status) 권한
+    default: op
+
+  cpslimiter.check:
+    description: CPS 확인 명령어 권한
+    default: op
+
+  cpslimiter.bypass:
+    description: CPS 제한 우회 권한 (디버프 면역)
+    default: op

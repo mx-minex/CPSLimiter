@@ -1,0 +1,144 @@
+# ========================================
+#   CPSLimiter Plugin
+#   Created by Junseo5
+#   Bug reports: Discord - Junseo5#3213
+# ========================================
+#
+# CPSLimiter 설정 파일
+# CPS(초당 클릭 수)를 제한하고 임계값 초과 시
+# 디버프 효과를 부여하는 플러그인
+
+# ============================================
+# 기본 설정
+# ============================================
+settings:
+  # CPS 임계값
+  # 이 값 이상의 CPS가 감지되면 디버프가 부여됩니다.
+  # 기본값: 15 (일반적인 플레이어는 8-12 CPS)
+  cps-threshold: 15
+
+  # 디버프 쿨다운 (밀리초)
+  # 연속으로 디버프가 부여되는 것을 방지합니다.
+  # 1000 = 1초
+  debuff-cooldown: 1000
+
+  # 디버그 모드
+  # 활성화하면 콘솔에 CPS 관련 로그가 출력됩니다.
+  debug: false
+
+  # 전투 타겟 판정 모드
+  # PlayerAnimationEvent는 채굴/상호작용에서도 발생하므로,
+  # 전투(PVP) 의도일 때만 CPS를 카운트하도록 판정 범위를 제한할 수 있습니다.
+  #
+  # - PLAYER_ONLY: "유저(플레이어)를 타격"하려는 경우에만 CPS 카운트 (권장)
+  # - LIVING_ENTITY: 모든 생명체(플레이어/몹/아머스탠드 포함)를 대상으로 카운트
+  target-mode: "PLAYER_ONLY"
+
+# ============================================
+# 알림 설정
+# ============================================
+notification:
+  # 채팅 메시지 알림
+  chat:
+    # 활성화 여부
+    enabled: true
+
+  # 타이틀 알림 (화면 중앙에 큰 글씨로 표시)
+  title:
+    # 활성화 여부
+    enabled: true
+    # 페이드인 시간 (틱, 20틱 = 1초)
+    fade-in: 10
+    # 유지 시간 (틱)
+    stay: 40
+    # 페이드아웃 시간 (틱)
+    fade-out: 10
+
+# ============================================
+# 로그 설정
+# CPS 초과 플레이어를 파일에 기록합니다.
+# ============================================
+logging:
+  # 활성화 여부
+  enabled: true
+  # 로그 파일명 (플러그인 폴더 내에 생성됩니다)
+  file: "violations.log"
+
+# ============================================
+# 디버프 효과 설정
+# ============================================
+# 여러 효과를 동시에 부여할 수 있습니다.
+# 각 효과는 enabled: true 로 활성화합니다.
+#
+# 효과 타입 목록 (effect에 사용):
+# - SLOWNESS: 구속 (이동 속도 감소)
+# - WEAKNESS: 나약함 (공격력 감소)
+# - MINING_FATIGUE: 채굴 피로 (채굴/공격 속도 감소)
+# - BLINDNESS: 실명 (시야 감소)
+# - NAUSEA: 멀미 (화면 흔들림)
+# - HUNGER: 허기 (배고픔 증가)
+# - POISON: 독 (체력 감소, 사망 불가)
+# - WITHER: 시듦 (체력 감소, 사망 가능)
+# - SLOW_FALLING: 느린 낙하
+# - LEVITATION: 공중 부양
+# - GLOWING: 발광 (윤곽선 표시)
+# - DARKNESS: 어둠 (1.19+)
+#
+# 지속시간: 틱 단위 (20틱 = 1초)
+# 레벨: 1부터 시작 (1 = I, 2 = II, 10 = X 등)
+# ============================================
+debuffs:
+  # 구속 효과 (이동 속도 감소)
+  slowness:
+    enabled: true
+    effect: "SLOWNESS"
+    level: 10
+    # 100틱 = 5초
+    duration: 100
+    show-particles: true
+    show-icon: true
+
+  # 나약함 효과 (공격력 감소)
+  weakness:
+    enabled: true
+    effect: "WEAKNESS"
+    level: 5
+    # 100틱 = 5초
+    duration: 100
+    show-particles: true
+    show-icon: true
+
+  # 추가 효과 예시 (비활성화 상태)
+  # 필요시 enabled: true 로 변경하여 사용
+
+  # 채굴 피로 (공격/채굴 속도 감소)
+  #mining_fatigue:
+  #  enabled: false
+  #  effect: "MINING_FATIGUE"
+  #  level: 3
+  #  duration: 60
+  #  show-particles: false
+  #  show-icon: true
+
+  # 실명 (시야 제한)
+  #blindness:
+  #  enabled: false
+  #  effect: "BLINDNESS"
+  #  level: 1
+  #  duration: 40
+  #  show-particles: false
+  #  show-icon: true
+
+  # 멀미 (화면 흔들림)
+  #nausea:
+  #  enabled: false
+  #  effect: "NAUSEA"
+  #  level: 1
+  #  duration: 60
+  #  show-particles: false
+  #  show-icon: true
+
+# ============================================
+# 버전 정보 (수정하지 마세요)
+# ============================================
+config-version: 1
