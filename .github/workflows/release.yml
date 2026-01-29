@@ -42,11 +42,6 @@ jobs:
       - name: 릴리즈 빌드
         run: ./gradlew build -Pversion=${{ steps.version.outputs.VERSION }} --no-daemon
 
-      - name: JAR 파일명 변경
-        run: |
-          cd build/libs
-          mv *.jar CPSLimiter-${{ steps.version.outputs.VERSION }}.jar
-
       - name: SHA256 체크섬 생성
         run: |
           cd build/libs
