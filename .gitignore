@@ -1,7 +1,6 @@
 # Gradle
 .gradle/
 build/
-!gradle/wrapper/gradle-wrapper.jar
 
 # IDE - IntelliJ IDEA
 .idea/
@@ -33,6 +32,7 @@ run/
 
 # 빌드 결과물 (jar는 releases나 CI에서 관리)
 *.jar
+!gradle/wrapper/gradle-wrapper.jar
 
 # 환경 설정 (민감 정보)
 .env
